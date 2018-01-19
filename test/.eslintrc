@@ -1,0 +1,6 @@
+{
+  "extends": "canonical/mocha",
+  "rules": {
+    "mocha/max-top-level-suites": "off"
+  }
+}

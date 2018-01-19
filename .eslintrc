@@ -1,0 +1,22 @@
+{
+    "extends": "canonical",
+    "root": true,
+    "rules": {
+        "id-length": "off",
+        "filenames/match-exported": "off",
+        "sort-keys": "off",
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": true,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": true
+            }
+        }],
+        "arrow-parens": ["error", "as-needed"],
+        "arrow-body-style": ["error", "as-needed"],
+        "linebreak-style": "off",
+        "no-restricted-syntax": "off"
+    }
+}
