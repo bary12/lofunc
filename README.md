@@ -1,6 +1,6 @@
 # Lofunc
 
-Lofunc is a higher-order functional programming library. It manipulates functions. It aims to make functional programming in Javascript easier.
+Lofunc is a higher-order functional programming library. It manipulates functions. It aims to make functional programming in Javascript better.
 
 ## Examples
 
@@ -25,7 +25,6 @@ func(david); // {name: 'David the old', age: 84}
 The `F.compose` function allows for functional composition.
 
 ```javascript
-
 // Equivalent to x => x * 2 + 1
 const func = F.compose(
   x => x + 1,
@@ -38,7 +37,6 @@ func(3); // 7
 For readability, `F.composeReverse` is also provided.
 
 ```javascript
-
 // Equivalent to x => (x + 1) * 2
 const func = F.composeReverse(
   x => x + 1,
@@ -96,13 +94,11 @@ Get ready to see this little smiley face `._.` in your code.
 Lofunc provides utility functions, `F.spread` and `F.unspread`, which convert a function that accepts an array to a function with rest parameters and vice versa.
 
 ```javascript
-
 function sum(arr) {
   return arr.reduce((a, b) => a + b, 0);
 }
 
 F.spread(sum)(1, 2, 3); // 6
-
 ```
 
 ```javascript
