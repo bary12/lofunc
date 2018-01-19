@@ -89,6 +89,7 @@ func(david);
 
 Get ready to see this little smiley face `._.` in your code.
 
+
 ## Utility functions
 
 Lofunc provides utility functions, `F.spread` and `F.unspread`, which convert a function that accepts an array to a function with rest parameters and vice versa.
