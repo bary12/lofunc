@@ -2,6 +2,15 @@
 
 Lofunc is a higher-order functional programming library. It manipulates functions. It aims to make functional programming in Javascript better.
 
+## install
+
+with npm
+
+```bash
+npm install --save lofunc
+```
+
+
 ## Examples
 
 One of the most useful features of Lofunc is `F.object`. It returns a function that handles each of the keys of an object differently.
