@@ -40,7 +40,7 @@ For readability, `F.composeReverse` is also provided.
 ```javascript
 
 // Equivalent to x => (x + 1) * 2
-const func = F.compose(
+const func = F.composeReverse(
   x => x + 1,
   x => x * 2
 )
