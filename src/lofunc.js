@@ -39,7 +39,7 @@ const F = {
    * @param {Array.<Function>} funcs - The functions to compose.
    * @returns {Function} The composed function.
    */
-  composeReverse (...funcs) {
+  chain (...funcs) {
     return F.compose(..._.reverse(funcs));
   },
 

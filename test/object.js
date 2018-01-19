@@ -48,7 +48,7 @@ describe('F.object', () => {
 
     const func = F.object({
       name: x => x + ' the cat lover',
-      cats: F.composeReverse(
+      cats: F.chain(
         F._.filter(cat => cat.age > 5),
         F._.map(F.object({
           name: name => name + ' the cat'

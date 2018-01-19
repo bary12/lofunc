@@ -26,11 +26,11 @@ describe('F.compose', () => {
   });
 });
 
-describe('F.composeReverse', () => {
+describe('F.chain', () => {
   it('Reverse', () => {
     assert.deepEqual(
       [1, 2, 3]
-        .map(F.composeReverse(x => x + 1, x => 2 * x)),
+        .map(F.chain(x => x + 1, x => 2 * x)),
       [4, 6, 8]
     );
   });

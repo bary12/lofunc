@@ -34,11 +34,11 @@ const func = F.compose(
 func(3); // 7
 ```
 
-For readability, `F.composeReverse` is also provided.
+For readability, `F.chain` is also provided. This just performs `F.compose` in the oposite order.
 
 ```javascript
 // Equivalent to x => (x + 1) * 2
-const func = F.composeReverse(
+const func = F.chain(
   x => x + 1,
   x => x * 2
 )
@@ -65,7 +65,7 @@ const david = {
 
 const func = F.object({
   name: x => x + ' the cat lover',
-  cats: F.composeReverse(
+  cats: F.chain(
       F._.filter(cat => cat.age > 5),
       F._.map(F.object({
         name: name => name + ' the cat'
