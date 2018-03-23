@@ -49,8 +49,8 @@ describe('F.object', () => {
     const func = F.object({
       name: x => x + ' the cat lover',
       cats: F.chain(
-        F._.filter(cat => cat.age > 5),
-        F._.map(F.object({
+        F.filter(cat => cat.age > 5),
+        F.map(F.object({
           name: name => name + ' the cat'
         }))
       )
@@ -85,5 +85,26 @@ describe('F.object', () => {
     });
 
     assert.deepEqual(func(arr), [1, 4, 0]);
+  });
+
+  it('Should be Immutable', () => {
+    const obj = {
+      a: 'b',
+      b: ['c', 'c'],
+      c: 'd'
+    };
+
+    const func = F.object({
+      a: x => x.length,
+      b: F.map(x => x + 'a'),
+      c: x => `This is ${x}.`
+    });
+
+    assert.notDeepEqual(obj, func(obj));
+    assert.deepEqual(obj, {
+      a: 'b',
+      b: ['c', 'c'],
+      c: 'd'
+    });
   });
 });

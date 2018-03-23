@@ -31,6 +31,8 @@ const func = F.object({
 func(david); // {name: 'David the old', age: 84}
 ```
 
+The function returned by `F.object` does not mutate the object, and the properties are deep-cloned.
+
 The `F.compose` function allows for functional composition.
 
 ```javascript
@@ -55,7 +57,7 @@ const func = F.chain(
 func(3); // 8
 ```
 
-Lofunc also provides the `F._` object, which contains lodash hooks (currently only for `_.map` and `_.filter`). i.e.
+Lofunc also provides curried `map` and `filter`. Currently not many curried util functions are available, and one might want to use Lofunc in combination with [lodash/fp](https://github.com/lodash/lodash/wiki/FP-Guide) or [Ramda.js](ramdajs.com).
 
 ```javascript
 const david = {
@@ -75,8 +77,8 @@ const david = {
 const func = F.object({
   name: x => x + ' the cat lover',
   cats: F.chain(
-      F._.filter(cat => cat.age > 5),
-      F._.map(F.object({
+      F.filter(cat => cat.age > 5),
+      F.map(F.object({
         name: name => name + ' the cat'
       }))
     )
@@ -95,8 +97,6 @@ func(david);
 }
 */
 ```
-
-Get ready to see this little smiley face `._.` in your code.
 
 
 ## Utility functions

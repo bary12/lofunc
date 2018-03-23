@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
+import utils from './utils';
 
 const F = {
   Tuple: class Tuple {
@@ -22,8 +23,9 @@ const F = {
     if (funcs.length === 0) {
       return x => x;
     }
-    const last = _.last(funcs);
-    const rest = _.slice(funcs, 0, funcs.length - 1);
+
+    const last = funcs.slice(-1)[0];
+    const rest = funcs.slice(0, -1);
 
     return (...x) => {
       const compute = last(...x);
@@ -40,7 +42,7 @@ const F = {
    * @returns {Function} The composed function.
    */
   chain (...funcs) {
-    return F.compose(..._.reverse(funcs));
+    return F.compose(...funcs.reverse());
   },
 
   /**
@@ -77,13 +79,15 @@ const F = {
    */
   object (funcObj) {
     return obj => {
-      _.forEach(obj, (value, key) => {
-        if (key in funcObj && funcObj[key] instanceof Function) {
-          obj[key] = funcObj[key](value);
-        }
-      });
+      const nobj = cloneDeep(obj);
 
-      return obj;
+      for (const prop in nobj) {
+        if (nobj.hasOwnProperty(prop) && prop in funcObj) {
+          nobj[prop] = funcObj[prop](nobj[prop]);
+        }
+      }
+
+      return nobj;
     };
   },
 
@@ -105,29 +109,27 @@ const F = {
    * @returns {Function} The cartesian product of the functions.
    */
   mult (...funcs) {
-    return (...x) => new F.Tuple(..._.map(funcs, (f, i) => f(x[i])));
+    return (...x) => new F.Tuple(...funcs.map((f, i) => f(x[i])));
   },
 
-  _: {
-    /**
-     * Similar to Array.map, _.map.
-     *
-     * @param {Function} cb - The map callback.
-     * @returns {Function} The mapping function.
-     */
-    map (cb) {
-      return arr => _.map(arr, cb);
-    },
+  /**
+   * Similar to Array.map, _.map.
+   *
+   * @param {Function} cb - The map callback.
+   * @returns {Function} The mapping function.
+   */
+  map (cb) {
+    return arr => arr.map(cb);
+  },
 
-    /**
-     * Similar to Array.filter, _.filter.
-     *
-     * @param {Function} cb - The filter callback.
-     * @returns {Function} The filtering function.
-     */
-    filter (cb) {
-      return arr => _.filter(arr, cb);
-    }
+  /**
+   * Similar to Array.filter, _.filter.
+   *
+   * @param {Function} cb - The filter callback.
+   * @returns {Function} The filtering function.
+   */
+  filter (cb) {
+    return arr => arr.filter(cb);
   }
 };
 

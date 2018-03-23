@@ -19,7 +19,7 @@
     "travis-deploy-once": "^4.3.2"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash.clonedeep": "^4.5.0"
   },
   "scripts": {
     "build": "babel ./src --out-dir ./dist --copy-files --source-maps",
