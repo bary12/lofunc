@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash.clonedeep';
-import utils from './utils';
 
 const F = {
   Tuple: class Tuple {

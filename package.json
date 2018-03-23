@@ -25,6 +25,7 @@
     "build": "babel ./src --out-dir ./dist --copy-files --source-maps",
     "test": "mocha ./test --recursive --require @babel/register",
     "lint": "eslint ./src ./test",
+    "ci": "yarn lint && yarn build && yarn test",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
